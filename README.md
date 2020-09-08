@@ -1,10 +1,6 @@
 # Финальный проект
 
-![taxi app](/taxi.png)
-
-Вам предстоит самостоятельно написать приложение для заказа такси.
-
-[Пример приложения](https://pensive-gates-d31754.netlify.com/)
+Приложение для заказа такси.
 
 Логин: test@test.com
 Пароль: 123123
@@ -27,61 +23,16 @@
 
 ## Работа с картой
 
-Для работы с картой предлагается использовать сервис [mapbox](https://www.mapbox.com/). Он предоставляют библиотеку для Javascript, её довольно удобно использовать для отображения карты и маршрутов на ней.
-
-[Документация для Jаvascript библиотеки](https://docs.mapbox.com/mapbox-gl-js/api/)
-
+Для работы с картой предлагается использовать сервис [mapbox](https://www.mapbox.com/). 
 Для работы с картой вам потребуется зарегистрироваться на [mapbox](https://www.mapbox.com) и получить токен.
-
-### Пример использования карты в приложении
-
-```jsx
-export default class Map extends Component {
-  map = null;
-  mapContainer = React.createRef();
-
-  componentDidMount() {
-    mapboxgl.accessToken = "ВАШ ТОКЕН С mapbox";
-    this.map = new mapboxgl.Map({
-      container: this.mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v9",
-      center: [30.2656504, 59.8029126],
-      zoom: 15
-    });
-  }
-
-  componentWillUnmount() {
-    this.map.remove();
-  }
-
-  render() {
-    return <div ref={this.mapContainer} />;
-  }
-}
-```
-
-Так же вам потребуются методы [map.flyTo](https://docs.mapbox.com/mapbox-gl-js/api/#map#flyto) и [map.addLayer](https://docs.mapbox.com/mapbox-gl-js/api/#map#addlayer).
 
 ## Работа со стилями
 
-Для реализации приложения предлагается использовать библиотеку компонентов.
-
-Я рекомендую использовать [Material UI](https://material-ui.com/). Именно эта библиотека была использована для демо.
-
-Помимо неё есть множество других библиотек компонентов:
-
-- [semantic-ui](https://react.semantic-ui.com/introduction)
-- [ant.design](https://ant.design/docs/spec/introduce)
-- [lihtning design](https://www.lightningdesignsystem.com/)
-- [grommet](http://grommet.io/)
-- [primer](https://primer.github.io/) - библотека компонентов на базе дизайн системы гитхаба.
-- [purecss](https://purecss.io/)
-- [foundation](https://foundation.zurb.com/)
-- [clarity](https://vmware.github.io/clarity/)
+В приложении использовалась библиотека [Material UI](https://material-ui.com/).
 
 ## Задачи
 
-Необходимо реализовать приложение со следующим функционалом:
+Припложение реализовано со следующим функционалом:
 
 - Как пользователь:
 
@@ -113,11 +64,11 @@ export default class Map extends Component {
     - Я получу сообщение об успешно выполненном заказе.
     - Мне будет доступна кнопка выполнения нового заказа.
 
-## Условия выполнения
+## Что использовано
 
-- Необходимо реализовать приложение используя библиотеку ReactJS.
-- Для управлением состоянием приложения должен быть использован Redux.
-- Сайд-эффекты могут быть реализованы с помощью [Redux Saga](https://github.com/redux-saga/redux-saga) либо [Redux Thunk](https://github.com/reduxjs/redux-thunk), в крайнем случае с помощью **middleware**.
+- Использована библиотека ReactJS.
+- Для управлением состоянием приложения использован Redux.
+- Сайд-эффекты реализованы с помощью [Redux Saga](https://github.com/redux-saga/redux-saga).
 
 ### Бонусные условия
 
