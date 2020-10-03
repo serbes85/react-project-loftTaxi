@@ -1,68 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Финальный проект
 
-## Available Scripts
+Приложение для заказа такси.
 
-In the project directory, you can run:
+Логин: test@test.com
+Пароль: 123123
 
-### `yarn start`
+## Работа с сервером
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Для получения данных о маршруте и списка доступных адресов - использован [сервер](https://loft-taxi.glitch.me/).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Доступные запросы
 
-### `yarn test`
+- `/auth` - позволяет авторизоваться (test@test.com / 123123)
+- `/route` - возвращает список точек для маршрута
+- `/addressList` - возвращает список доступных адресов
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Более подробное описание на странице [сервера](https://loft-taxi.glitch.me/).
 
-### `yarn build`
+Для сервера использован сервис [glitch](https://glitch.com/).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Работа с картой
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Для работы с картой предлагается использовать сервис [mapbox](https://www.mapbox.com/). 
+Для работы с картой вам потребуется зарегистрироваться на [mapbox](https://www.mapbox.com) и получить токен.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Работа со стилями
 
-### `yarn eject`
+В приложении использовалась библиотека [Material UI](https://material-ui.com/).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Задачи
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Припложение реализовано со следующим функционалом:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Как пользователь:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  - Я могу авторизоваться в приложении
+  - При неверном логине или пароле я получу ошибку валидации
+  - При попытке перейти на любую страницу кроме `/login` я буду перенаправлен обратно на страницу `/login`
 
-## Learn More
+- Как авторизованный пользователь:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - Я имею доступ к странице с картой (`/map`)
+  - При незаполненных платёжных данных на странице карты я вижу сообщение о необходимости их заполнить и ссылку на профиль.
+  - Я имею доступ к странице профиля (`/profile`)
+  - На странице профиля (`/profile`) я могу указать данные банковской карты
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    - Поля `cardName`, `cardNumber`, `expDate`, `cvv` обязательны для заполнения
+    - Поле `cardName` может содержать только буквы латинского алфавита
+    - Поле `cardNumber` может содержать только цифры и должно иметь длину 8 символов.
+    - Поле `expDat` должно иметь формат даты
+    - Поле `CVV` может содержать только цифры. Состоит из 3 символов.
+    - Я получаю оповещение при успешном сохранении данных карты.
 
-### Code Splitting
+  - Я могу выйти из аккаунта нажав кнопку "Выйти".
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- Как авторизованный пользователь с указанными платёжными данными:
+  - На странице с картой я могу выбрать адрес отправления и прибытия из списка доступных.
+  - При указанных адресах отправления и прибытия я могу нажать на кнопку "Выполнить заказ".
+    - Карта переместится к точке отправления.
+    - Будет построен маршрут от адреса отправления к адресу прибытия.
+    - Я получу сообщение об успешно выполненном заказе.
+    - Мне будет доступна кнопка выполнения нового заказа.
 
-### Analyzing the Bundle Size
+## Что использовано
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- Использована библиотека ReactJS.
+- Для управлением состоянием приложения использован Redux.
+- Сайд-эффекты реализованы с помощью [Redux Saga](https://github.com/redux-saga/redux-saga).
 
-### Making a Progressive Web App
+## Общая информация
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Перед началом работы выполните yarn install.
+- Для запуска приложения выполните yarn start.
