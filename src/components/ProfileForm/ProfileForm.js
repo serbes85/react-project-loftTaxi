@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import NumberFormat from "react-number-format";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
@@ -20,6 +21,7 @@ const renderField = ({
   placeholder,
   id,
   meta: { touched, error },
+  ...custom
 }) => {
   return (
     <TextField
@@ -31,15 +33,31 @@ const renderField = ({
       helperText={touched && error}
       error={touched && error && true}
       {...input}
+      {...custom}
     />
   );
 };
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
+
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange(values.value);
+      }}
+      format="#### #### #### ####"
+    />
+  );
+}
 
 const validate = (value) => {
   const errors = {};
   if (!value.numberCard) {
     errors.numberCard = "Поле обязательно для заполнения";
-  } else if (value.numberCard.length !== 0 && value.numberCard.length !== 16) {
+  }
+  if (value.numberCard && value.numberCard.split(" ").join("").length !== 16) {
     errors.numberCard = "В номере карты 16 цифр";
   }
   if (!value.userName) {
@@ -114,16 +132,22 @@ class ProfileForm extends PureComponent {
                           name="numberCard"
                           type="text"
                           id="number-card"
-                          label="Номер карты *"
-                          placeholder="Номер карты *"
+                          required={true}
+                          label="Номер карты"
+                          placeholder="Номер карты"
                           component={renderField}
+                          InputProps={{ inputComponent: NumberFormatCustom }}
                         />
                         <Field
                           name="expiryDate"
-                          id="expiry-date"
-                          label="Срок действия *"
-                          component={renderField}
                           type="date"
+                          id="expiry-date"
+                          required={true}
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          component={renderField}
+                          label="Срок действия"
                         />
                       </Paper>
                     </Grid>
@@ -135,16 +159,18 @@ class ProfileForm extends PureComponent {
                           name="userName"
                           type="text"
                           id="user-name"
-                          label="Имя владельца *"
-                          placeholder="Имя владельца *"
+                          required={true}
+                          label="Имя владельца"
+                          placeholder="Имя владельца"
                           component={renderField}
                         />
                         <Field
                           name="cvc"
                           type="text"
                           id="cvc-card"
-                          label="CVC *"
-                          placeholder="CVC *"
+                          required={true}
+                          label="CVC"
+                          placeholder="CVC"
                           component={renderField}
                         />
                       </Paper>

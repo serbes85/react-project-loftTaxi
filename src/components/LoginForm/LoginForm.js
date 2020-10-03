@@ -12,7 +12,6 @@ import {
   Button,
   Typography,
   Grid,
-  Link,
   withStyles,
 } from "@material-ui/core";
 
@@ -68,7 +67,6 @@ class LoginForm extends PureComponent {
       imgItemAnimation,
       paper,
       title,
-      signIn,
       buttonItem,
       buttonHover,
     } = this.props.classes;
@@ -101,18 +99,6 @@ class LoginForm extends PureComponent {
                   <Grid item>
                     <Typography variant="h4" className={title}>
                       Войти
-                    </Typography>
-                    <Typography variant="body1" className={title}>
-                      Новый пользователь?
-                      <Link
-                        to="/singup"
-                        className={signIn}
-                        onClick={() => {
-                          console.info("I'm a button.");
-                        }}
-                      >
-                        Зарегистрируйтесь
-                      </Link>
                     </Typography>
                   </Grid>
                   <Grid item>

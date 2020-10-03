@@ -23,11 +23,6 @@ const styles = () => ({
   },
   imgItemAnimation: {
     width: "150px",
-    // animation: "0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both 0.3s",
-    // filter: "blur(40px)",
-    // opacity: "0",
-    // transform: "translateX(-1000px) scaleX(2.5) scaleY(0.2)",
-    // transformOrigin: "100% 50%",
   },
 
   imgItem: {
@@ -44,10 +39,6 @@ const styles = () => ({
 
   title: {
     marginBottom: "30px",
-  },
-  signIn: {
-    color: "#1473e6",
-    cursor: "pointer",
   },
   buttonItem: {
     display: "flex",
